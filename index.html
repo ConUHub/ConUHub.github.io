@@ -346,5 +346,9 @@ $("#share").addEventListener("click",async()=>{const label=$("#share span");cons
 drawRecent();render("");
 </script>
 
+<script>
+/* visit counter: counts each browser once, no personal data */
+(function(){try{var N="conuhub-q7x4k2",s=window.localStorage;function hit(k){fetch("https://abacus.jasoncameron.dev/hit/"+N+"/"+k,{keepalive:true}).catch(function(){})}if(!s.getItem("hub_counted")){s.setItem("hub_counted","1");hit("visitors");if(/[?&]ref=poster/.test(location.search))hit("poster")}}catch(e){}})();
+</script>
 </body>
 </html>
