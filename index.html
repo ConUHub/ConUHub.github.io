@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Concordia Student Task Hub</title>
+<meta name="description" content="Find the official Concordia page for common student tasks in one tap. A student-built COMM227 project, not an official Concordia site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://upload.wikimedia.org">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wdth,wght@75..100,400..700&display=swap">
+<meta name="theme-color" content="#912338">
+<meta property="og:title" content="Student Task Hub: what do you need to do?">
+<meta property="og:description" content="One tap to the official Concordia page for tutoring, class seats, deadlines, Moodle, tuition and more. A COMM227 student project.">
+<meta property="og:type" content="website">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;-webkit-text-size-adjust:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+/* Layout: burgundy header band (title, search, quick tasks) over a light grey page; task groups as white link panels, one column on phones, two on wide screens. Palette from Concordia's published web colours. */
+:root{
+  --burgundy:#912338; --burgundy-deep:#6b1a29; --on-burgundy:#ffffff; --on-burgundy-2:#f6dde2;
+  --ground:#f3f2f1; --panel:#ffffff; --line:#e1dedc; --ink:#1d1b1c; --ink-2:#5c5658; --link:#912338;
+  --blue:#004085; --turquoise:#057d78; --mauve:#573996; --gold:#897334; --yellow:#e5a712;
+  --notice:#fdf3d8; --notice-ink:#4d3a06; --focus:#004085; --hover:#f8eef0;
+  --shadow:0 1px 2px rgba(29,27,28,.06),0 4px 12px -6px rgba(29,27,28,.18);
+  --font:"Cabin","Gill Sans Nova","Gill Sans","Gill Sans MT",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --burgundy:#7a1d2f; --burgundy-deep:#561421; --on-burgundy:#ffffff; --on-burgundy-2:#f1d3d9;
+  --ground:#151314; --panel:#211e1f; --line:#363132; --ink:#f2eeef; --ink-2:#bdb4b6; --link:#f08da0;
+  --blue:#6fa8ff; --turquoise:#45c2bb; --mauve:#b39af0; --gold:#d6bd74; --yellow:#f2c14e;
+  --notice:#2e2612; --notice-ink:#f6dd9a; --focus:#6fa8ff; --hover:#2c2426;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 16px -8px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --burgundy:#7a1d2f; --burgundy-deep:#561421; --on-burgundy:#ffffff; --on-burgundy-2:#f1d3d9;
+  --ground:#151314; --panel:#211e1f; --line:#363132; --ink:#f2eeef; --ink-2:#bdb4b6; --link:#f08da0;
+  --blue:#6fa8ff; --turquoise:#45c2bb; --mauve:#b39af0; --gold:#d6bd74; --yellow:#f2c14e;
+  --notice:#2e2612; --notice-ink:#f6dd9a; --focus:#6fa8ff; --hover:#2c2426;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 16px -8px rgba(0,0,0,.7); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scrollbar-color:var(--burgundy) var(--ground)}
+body{background:var(--ground);color:var(--ink);font:400 16px/1.5 var(--font);caret-color:var(--burgundy)}
+::selection{background:var(--burgundy);color:#fff}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:920px;margin:0 auto}
+
+.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line)}
+.topbar .inner{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:10px}
+.brand{font:700 clamp(17px,4.6vw,20px) var(--font);color:var(--link);letter-spacing:-.005em}
+.tag{display:inline-flex;align-items:center;gap:5px;font:600 12.5px var(--font);white-space:nowrap;color:var(--ink-2);background:var(--ground);border-radius:999px;padding:5px 11px}
+.band{background-color:var(--burgundy);background-image:linear-gradient(100deg,rgba(122,24,44,.95) 0%,rgba(145,35,56,.86) 55%,rgba(145,35,56,.62) 100%),url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Concordia_University_02.JPG/1280px-Concordia_University_02.JPG");background-size:cover;background-position:center 30%;color:var(--on-burgundy)}
+.band .inner{padding-block:30px 24px;display:flex;flex-direction:column;gap:14px}
+h1{margin:0;font:700 clamp(32px,7.5vw,52px)/1.05 var(--font);font-stretch:88%;letter-spacing:-.01em;text-wrap:balance}
+.lede{margin:0;color:var(--on-burgundy-2);max-width:56ch;font-size:16px}
+.search{position:relative;margin-top:4px}
+.search>svg{position:absolute;left:15px;top:50%;translate:0 -50%;color:var(--ink-2);pointer-events:none}
+.search input{width:100%;font:500 17px/1.2 var(--font);color:var(--ink);background:var(--panel);border:0;border-radius:6px;
+  padding:16px 46px 16px 46px;box-shadow:var(--shadow);outline:none;-webkit-appearance:none;appearance:none}
+.search input::placeholder{color:var(--ink-2)}
+.search input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+.search input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.clear{position:absolute;right:8px;top:50%;translate:0 -50%;border:0;background:transparent;color:var(--ink-2);width:34px;height:34px;border-radius:6px;cursor:pointer;display:grid;place-items:center}
+.clear:hover{background:var(--hover)}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-inline:-4px;padding:2px 4px 4px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;gap:7px;font:600 14px var(--font);color:var(--on-burgundy);background:transparent;
+  border:1.5px solid rgba(255,255,255,.55);border-radius:999px;padding:7px 13px;cursor:pointer;transition:background-color .15s,color .15s}
+.chip:hover{background:rgba(255,255,255,.12)}
+.chip[aria-pressed="true"]{background:#fff;color:#912338;border-color:#fff}
+
+main .inner{padding-block:28px 44px;display:flex;flex-direction:column;gap:32px}
+.notice{background:var(--notice);color:var(--notice-ink);border-radius:6px;padding:18px 20px 16px;display:flex;flex-direction:column;gap:10px}
+.notice h2{margin:0;font:700 18px var(--font);display:flex;align-items:center;gap:8px}
+.notice ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.notice li{display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:baseline}
+.notice b{font-variant-numeric:tabular-nums;font-weight:700}
+.notice .past{opacity:.6}
+.notice .past span{text-decoration:line-through}
+.soon{display:inline-block;margin-left:6px;font-style:normal;font-weight:700;font-size:13px;background:#912338;color:#fff;border-radius:4px;padding:1px 7px;vertical-align:1px}
+
+.group{display:flex;flex-direction:column;gap:12px}
+.group h2{margin:0;font:700 22px/1.2 var(--font)}
+.group h2::after{content:"";display:block;height:3px;width:40px;background:var(--c);border-radius:2px;margin-top:8px}
+.group h2 small{font:500 14px var(--font);color:var(--ink-2);margin-left:8px}
+.list{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border-radius:6px;box-shadow:var(--shadow);overflow:hidden}
+@media (min-width:720px){.list{grid-template-columns:1fr 1fr}.task.wide{grid-column:1/-1}}
+.task{display:flex;flex-direction:column;gap:6px;padding:18px 20px;background:var(--panel);min-width:0}
+.head{display:flex;align-items:center;gap:12px}
+.ico{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;color:var(--c);background:color-mix(in srgb,var(--c) 12%,var(--panel))}
+.task h3{margin:0;font:700 17.5px/1.3 var(--font)}
+.task p{margin:0;color:var(--ink-2);font-size:15px;max-width:60ch}
+.more{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px}
+.more a{color:var(--link);font-weight:600;text-underline-offset:3px}
+.open{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+  background:#912338;color:#fff;font:700 15px var(--font);border-radius:4px;padding:9px 14px 9px 16px;margin-block-start:8px;transition:background-color .15s}
+.open svg.ic{transition:translate .25s cubic-bezier(.16,1,.3,1)}
+.open:hover{background:#6b1a29}
+.open:hover svg,.open:focus-visible svg{translate:3px 0}
+.top .list{border-top:3px solid #912338}
+
+.empty{background:var(--panel);border-radius:6px;box-shadow:var(--shadow);padding:22px;text-align:center;color:var(--ink-2)}
+.empty a{color:var(--link);font-weight:600}
+.foot{background:#1f1b1c;color:#d9d2d3}
+.foot .inner{padding-block:36px 44px;display:grid;grid-template-columns:1fr;gap:28px}
+@media (min-width:720px){.foot .inner{grid-template-columns:3fr 2fr}}
+.foot h2{margin:0 0 10px;font:700 17px var(--font);color:#fff}
+.foot p{margin:0 0 8px;max-width:56ch;font-size:15px}
+.foot .small{font-size:13.5px;color:#b3a9ab}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.foot a{color:#fff;font-weight:600;text-underline-offset:3px;display:inline-flex;align-items:center;gap:6px}
+.foot a:hover{color:#f6dde2}
+.skip{position:absolute;left:12px;top:-60px;z-index:20;background:var(--panel);color:var(--link);font-weight:700;padding:10px 14px;border-radius:6px;box-shadow:var(--shadow)}
+.skip:focus{top:12px}
+.status{margin:0;min-height:1.4em;font-size:14px;color:var(--on-burgundy-2)}
+.status:empty{display:none}
+mark{background:color-mix(in srgb,var(--yellow) 45%,transparent);color:inherit;border-radius:2px;padding:0 1px}
+.recent{display:flex;flex-direction:column;gap:10px}
+.recent h2{margin:0;font:700 16px var(--font);color:var(--ink-2);display:flex;align-items:center;gap:8px}
+.recent-list{display:flex;gap:8px;flex-wrap:wrap}
+.recent-list a{display:inline-flex;align-items:center;gap:8px;background:var(--panel);box-shadow:var(--shadow);border-radius:6px;padding:9px 12px;font-weight:600;font-size:15px;color:var(--ink);text-decoration:none}
+.recent-list a svg{color:var(--link)}
+.recent-list a:hover{background:var(--hover)}
+.task[hidden],.group[hidden]{display:none!important}
+.group{content-visibility:auto;contain-intrinsic-size:auto 600px}
+.group.top{content-visibility:visible}
+.share{margin-top:6px;display:inline-flex;align-items:center;gap:8px;font:600 14px var(--font);color:#fff;background:transparent;border:1.5px solid rgba(255,255,255,.4);border-radius:999px;padding:7px 14px;cursor:pointer}
+.share:hover{background:rgba(255,255,255,.08)}
+.fab{position:fixed;z-index:15;right:max(16px,calc(env(safe-area-inset-right,0px) + 12px));bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  display:inline-flex;align-items:center;gap:8px;font:700 15px var(--font);color:#fff;background:#912338;border:0;border-radius:999px;padding:12px 18px;
+  box-shadow:0 2px 4px rgba(0,0,0,.15),0 10px 24px -8px rgba(80,10,25,.55);cursor:pointer;transition:opacity .2s,translate .3s cubic-bezier(.16,1,.3,1)}
+.fab:hover{background:#6b1a29}
+.fab.off{opacity:0;translate:0 12px;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.open svg,.chip,.fab{transition:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-book-open" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+<symbol id="i-armchair" viewBox="0 0 24 24"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M5 18v2"/><path d="M19 18v2"/></symbol>
+<symbol id="i-list-plus" viewBox="0 0 24 24"><path d="M11 12H3"/><path d="M16 6H3"/><path d="M16 18H3"/><path d="M18 9v6"/><path d="M21 12h-6"/></symbol>
+<symbol id="i-calendar-x" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m14 14-4 4"/><path d="m10 14 4 4"/></symbol>
+<symbol id="i-calendar-days" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></symbol>
+<symbol id="i-pencil-line" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/><path d="m15 5 3 3"/></symbol>
+<symbol id="i-user-round" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+<symbol id="i-circle-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-heart-handshake" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></symbol>
+<symbol id="i-accessibility" viewBox="0 0 24 24"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></symbol>
+<symbol id="i-monitor-play" viewBox="0 0 24 24"><path d="M10 7.75a.75.75 0 0 1 1.142-.638l3.664 2.249a.75.75 0 0 1 0 1.278l-3.664 2.25a.75.75 0 0 1-1.142-.64z"/><path d="M12 17v4"/><path d="M8 21h8"/><rect x="2" y="3" width="20" height="14" rx="2"/></symbol>
+<symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-library" viewBox="0 0 24 24"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></symbol>
+<symbol id="i-receipt" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></symbol>
+<symbol id="i-piggy-bank" viewBox="0 0 24 24"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"/><path d="M2 9v1c0 1.1.9 2 2 2h1"/><path d="M16 11h.01"/></symbol>
+<symbol id="i-id-card" viewBox="0 0 24 24"><path d="M16 10h2"/><path d="M16 14h2"/><path d="M6.17 15a3 3 0 0 1 5.66 0"/><circle cx="9" cy="11" r="2"/><rect x="2" y="5" width="20" height="14" rx="2"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+<symbol id="i-external-link" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.86a10 10 0 0 1 14 0"/><path d="M8.5 16.43a5 5 0 0 1 7 0"/></symbol>
+<symbol id="i-printer" viewBox="0 0 24 24"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect x="6" y="14" width="12" height="8" rx="1"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+<symbol id="i-arrow-left-right" viewBox="0 0 24 24"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></symbol>
+</defs></svg>
+<a class="skip" href="#q">Skip to search</a>
+
+<div class="topbar gut"><div class="inner"><span class="brand">Student Task Hub</span><span class="tag"><svg class="ic" width="15" height="15" aria-hidden="true"><use href="#i-info"/></svg>Unofficial student project</span></div></div>
+
+<header class="band gut">
+  <div class="inner">
+    <h1>What do you need to do?</h1>
+    <p class="lede">Pick a task to go straight to the official Concordia page, with the steps in two lines.</p>
+    <div class="search" role="search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search tutoring, exams, Moodle…" aria-label="Search tasks" autocomplete="off" enterkeyhint="search">
+      <button class="clear" id="clear" type="button" aria-label="Clear search" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="chips" id="chips" aria-label="Quick tasks"></div>
+    <p class="status" id="status" aria-live="polite"></p>
+  </div>
+</header>
+
+<main class="gut">
+  <div class="inner">
+    <section class="notice" aria-labelledby="dates-h">
+      <h2 id="dates-h"><svg class="ic" width="20" height="20" aria-hidden="true"><use href="#i-calendar-days"/></svg>Fall 2026 deadlines</h2>
+      <ul id="dates"></ul>
+    </section>
+    <section class="recent" id="recent" aria-labelledby="recent-h" hidden><h2 id="recent-h"><svg class="ic" width="18" height="18" aria-hidden="true"><use href="#i-history"/></svg>You opened recently</h2><div class="recent-list" id="recent-list"></div></section>
+    <div id="groups"></div>
+    <div class="empty" id="empty" hidden>Nothing matches that. Try one word, like “exam” or “tuition”, or ask <a href="https://www.concordia.ca/students/first-stop.html" target="_blank" rel="noopener">First Stop</a>, Concordia's help desk.</div>
+  </div>
+</main>
+<footer class="foot gut">
+  <div class="inner">
+    <div class="col">
+      <h2>Student Task Hub</h2>
+      <p>Built by students in COMM227 (Team 1) to make Concordia's pages easier to find. This is not an official Concordia website. Every link goes to Concordia's own pages, and you sign in there as usual.</p>
+      <p class="small">Header photo: <a href="https://commons.wikimedia.org/wiki/File:Concordia_University_02.JPG" target="_blank" rel="noopener">Concordia University 02</a> by Jean Gagnon, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a>, via Wikimedia Commons; cropped and tinted.</p>
+      <p class="small">Links last checked Nov 6, 2026. Spot a broken link or a missing task? Tell anyone on Team 1.</p>
+      <button class="share" id="share" type="button"><svg class="ic" width="16" height="16" aria-hidden="true"><use href="#i-link"/></svg><span>Copy link to share</span></button>
+    </div>
+    <div class="col">
+      <h2>Concordia quick links</h2>
+      <ul>
+        <li><a href="https://www.concordia.ca/students.html" target="_blank" rel="noopener">Student Hub<svg class="ic" width="14" height="14" aria-hidden="true"><use href="#i-external-link"/></svg></a></li>
+        <li><a href="https://www.concordia.ca/students/first-stop.html" target="_blank" rel="noopener">First Stop<svg class="ic" width="14" height="14" aria-hidden="true"><use href="#i-external-link"/></svg></a></li>
+        <li><a href="https://www.concordia.ca/students/success.html" target="_blank" rel="noopener">Student Success Centre<svg class="ic" width="14" height="14" aria-hidden="true"><use href="#i-external-link"/></svg></a></li>
+        <li><a href="https://www.concordia.ca/it.html" target="_blank" rel="noopener">IT support<svg class="ic" width="14" height="14" aria-hidden="true"><use href="#i-external-link"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<button class="fab" id="fab" type="button" hidden><svg class="ic" width="20" height="20" aria-hidden="true"><use href="#i-search"/></svg>Search</button>
+
+<script>
+const C="https://www.concordia.ca";
+const COL={top:"#912338",reg:"var(--blue)",advice:"var(--turquoise)",platforms:"var(--mauve)",money:"var(--gold)"};
+const groups=[
+ {id:"top",title:"Most asked",note:"from our student survey",tasks:[
+  {t:"Find tutoring or study help",i:"book-open",d:"Free tutoring, study workshops, and math and econ help from the Student Success Centre.",u:C+"/students/success/learning-support.html",k:"tutor tutoring help study math econ workshop learning",more:[["Math & econ help",C+"/students/success/learning-support/math-help.html"],["Writing help",C+"/students/success/learning-support/writing-assistance.html"]]},
+  {t:"Check seats in a class",i:"armchair",d:"Open Class Search, pick the term and course, then check open seats and the waitlist.",u:"https://campus.concordia.ca/psc/pscsprd/EMPLOYEE/SA/c/CU_EXT.CU_CLASS_SEARCH.GBL",k:"seat seats availability class search full waitlist open section"}
+ ]},
+ {id:"reg",title:"Courses & registration",tasks:[
+  {t:"Add a course",i:"list-plus",d:"Sign in to your Student Centre, go to Enroll, pick the term and add the class to your cart, then finish enrolling.",u:C+"/students/your-sis/register-for-a-course.html",k:"modify add register registration enroll new class course cart"},
+  {t:"Drop a course",i:"calendar-x",d:"Drop before DNE for a full refund. After that, withdrawing until DISC leaves a DISC on your record and no refund.",u:C+"/students/your-sis/drop-a-course.html",k:"modify drop withdraw remove leave dne disc refund waitlist",more:[["DNE and DISC explained",C+"/students/registration/advising/dne-disc.html"]]},
+  {t:"Swap a course",i:"arrow-left-right",d:"Switch one class or section for another in one step from your Student Centre.",u:C+"/students/your-sis/swap-a-course.html",k:"modify swap switch change section exchange replace"},
+  {t:"See all term dates",i:"calendar-days",d:"Every add, drop and withdrawal date for the term, including courses with unusual dates.",u:C+"/students/undergraduate/undergraduate-academic-dates.html",k:"dates deadlines calendar term academic"},
+  {t:"Find your exam dates",i:"pencil-line",d:"Exam period dates and when the final exam schedule is posted.",u:C+"/students/exams/important-dates.html",k:"exam exams final schedule midterm"}
+ ]},
+ {id:"advice",title:"Advice & support",tasks:[
+  {t:"Book a JMSB academic advisor",i:"user-round",d:"Find your program's advisor and use their Book a Meeting link. Drop-ins run Wednesdays in MB 4.201.",u:C+"/jmsb/programs/undergraduate/bachelor/students/advising-policies/academic-advising.html",k:"advisor advising jmsb appointment program requirements",more:[["Advisors for all faculties",C+"/students/registration/advising.html"]]},
+  {t:"Ask First Stop anything",i:"circle-help",d:"Not sure where to go? First Stop points you to the right office.",u:C+"/students/first-stop.html",k:"first stop help question general"},
+  {t:"Talk to a counsellor",i:"heart-handshake",d:"Book a mental health appointment or find same-day support.",u:C+"/health/mental-health/services.html#appointments",k:"counselling counsellor mental health therapy stress wellness",more:[["Health & Wellness",C+"/health.html"]]},
+  {t:"Get exam and course accommodations",i:"accessibility",d:"Register with the Access Centre for accessibility accommodations.",u:C+"/students/accessibility.html",k:"accessibility disability accommodation access centre"},
+  {t:"Career advising and jobs",i:"briefcase",d:"Resumé reviews, career advising and student job postings.",u:C+"/students/success/career-planning.html",k:"career job jobs resume internship co-op"}
+ ]},
+ {id:"platforms",title:"Moodle & online platforms",tasks:[
+  {t:"Open Moodle",i:"laptop",d:"Course pages, syllabus and assignments. Pearson and McGraw Hill links are usually inside the course page.",u:"https://moodle.concordia.ca/",k:"moodle syllabus course page assignment pearson mcgraw hill mylab connect"},
+  {t:"Open eConcordia",i:"monitor-play",d:"For online courses that run on eConcordia's own platform.",u:"https://www.econcordia.com/",k:"econcordia online course"},
+  {t:"Fix sign-in and Authenticator",i:"shield-check",d:"Set up or reset Microsoft Authenticator (MFA), including when you get a new phone.",u:C+"/it/security/mfa.html",k:"mfa authenticator 2fa two factor sign in login netname password phone",more:[["IT help",C+"/it.html"]]},
+  {t:"Connect to campus Wi-Fi",i:"wifi",d:"Set up eduroam or ConcordiaUniversity Wi-Fi on your laptop or phone.",u:C+"/it/services/wireless-network.html",k:"wifi wi-fi wireless internet eduroam network connect"},
+  {t:"Print on campus",i:"printer",d:"Where the printers are, how to pay, and how to print from your laptop.",u:C+"/print.html",k:"print printing printer copies scan"},
+  {t:"Library and study rooms",i:"library",d:"Search books and articles, book a study room, or ask a librarian.",u:"https://library.concordia.ca/",k:"library book study room research"}
+ ]},
+ {id:"money",title:"Money & admin",tasks:[
+  {t:"Tuition and fees",i:"receipt",d:"What you owe, payment deadlines and how to pay.",u:C+"/students/financial/tuition-fees.html",k:"tuition fees pay payment bill"},
+  {t:"Financial aid and bursaries",i:"piggy-bank",d:"Loans, bursaries, scholarships and emergency funding.",u:C+"/students/financial.html",k:"financial aid bursary scholarship loan money"},
+  {t:"Your student account",i:"id-card",d:"Personal info, ID card, transcripts and documents in one place.",u:"https://hub.concordia.ca/students/account.html",k:"account transcript id card student record documents"},
+  {t:"Student Service Centre (Birks)",i:"building",d:"In-person help with your student record, ID card, documents and tuition questions.",u:C+"/students/birks.html",k:"birks service centre office in person id card documents enrolment letter"},
+  {t:"International students",i:"globe",d:"Study permit, CAQ, health insurance and support from the International Students Office.",u:C+"/students/international.html",k:"international iso study permit caq visa immigration health insurance"},
+  {t:"Campus maps",i:"map",d:"Find a building or room at SGW or Loyola.",u:C+"/maps.html",k:"map maps building room campus sgw loyola"}
+ ]}
+];
+const chips=[["Tutoring","tutor","top"],["Seats","seat","top"],["Modify a course","modify","reg"],["Advisor","advis","advice"],["Moodle","moodle","platforms"],["Authenticator","authenticator","platforms"],["Exams","exam","reg"],["Tuition","tuition","money"]];
+const dates=[["2026-09-21","Last day to add or drop with a full refund (DNE)"],["2026-11-16","Last day to withdraw from a course (DISC), no refund"],["2026-12-07","Last day of fall classes"]];
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9 ]+/g," ");
+const SYN={wifi:"wireless eduroam",internet:"wireless",login:"authenticator mfa",password:"authenticator mfa",mfa:"authenticator",duo:"authenticator",
+  "2fa":"authenticator",refund:"dne",withdraw:"drop disc",change:"modify",schedule:"dates exam",timetable:"class search",waitlist:"seat",full:"seat",
+  money:"tuition aid",pay:"tuition",bursary:"aid",scholarship:"aid",therapy:"counsel",stress:"counsel",anxiety:"counsel",job:"career",
+  internship:"career",coop:"career",transcript:"account birks",visa:"international",permit:"international",syllabus:"moodle",homework:"moodle",
+  mylab:"moodle",connect:"moodle",room:"library map",printer:"print",map:"maps",tutor:"tutoring",advisor:"advis",adviser:"advis"};
+const stem=w=>w.length>4&&w.endsWith("s")?w.slice(0,-1):w;
+const STORE="taskhub.recent";
+const store={get(){try{return JSON.parse(localStorage.getItem(STORE))||[]}catch(e){return[]}},set(v){try{localStorage.setItem(STORE,JSON.stringify(v))}catch(e){}}};
+const all=[];
+
+// Deadlines with live countdown
+(function(){
+  const today=new Date();today.setHours(0,0,0,0);let nextShown=false;
+  $("#dates").innerHTML=dates.map(([iso,label])=>{
+    const d=new Date(iso+"T00:00:00");const days=Math.round((d-today)/864e5);
+    const nice=d.toLocaleDateString("en-CA",{month:"short",day:"numeric"});
+    let tag="";if(days>=0&&!nextShown){nextShown=true;tag=days===0?'<em class="soon">today</em>':`<em class="soon">${days} day${days===1?"":"s"} left</em>`}
+    return `<li class="${days<0?"past":""}"><b>${nice}</b><span>${label}${tag}</span></li>`}).join("");
+})();
+
+// Build every task once; searching only shows and hides them
+$("#groups").innerHTML=groups.map(g=>`<section class="group ${g.id==="top"?"top":""}" data-g="${g.id}" style="--c:${COL[g.id]}"><h2>${g.title}${g.note?` <small>${g.note}</small>`:""}</h2><div class="list">`+
+  g.tasks.map(t=>`<article class="task"><div class="head"><span class="ico"><svg class="ic" width="22" height="22" aria-hidden="true"><use href="#i-${t.i}"/></svg></span><h3>${esc(t.t)}</h3></div><p>${esc(t.d)}</p>${t.more?`<div class="more">${t.more.map(m=>`<a href="${m[1]}" target="_blank" rel="noopener">${esc(m[0])}</a>`).join("")}</div>`:""}<a class="open" href="${t.u}" target="_blank" rel="noopener" aria-label="Open: ${esc(t.t)} (official Concordia page)">Open<svg class="ic" width="18" height="18" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></article>`).join("")+
+  `</div></section>`).join("");
+$("#groups").style.display="contents";
+$(".group.top").after($(".notice"));
+document.querySelectorAll(".task").forEach((el,n)=>{
+  const g=groups.find(g=>g.id===el.closest(".group").dataset.g);const t=g.tasks[el.parentNode.children.length&&[...el.parentNode.children].indexOf(el)];
+  all.push({el,t,h3:el.querySelector("h3"),hay:" "+norm(t.t+" "+t.d+" "+t.k).replace(/\s+/g," ")});
+  el.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>remember(t)));
+});
+
+function expand(q){return norm(q).split(/\s+/).filter(Boolean).map(w=>{const v=[stem(w)];if(SYN[w])v.push(...SYN[w].split(" "));return v})}
+function render(q){
+  const terms=expand(q||"");let shown=0;
+  for(const r of all){
+    const ok=!terms.length||terms.every(alts=>alts.some(a=>r.hay.includes(" "+a)));
+    r.el.hidden=!ok;if(ok)shown++;
+    r.h3.innerHTML=terms.length&&ok?highlight(r.t.t,terms):esc(r.t.t);
+  }
+  document.querySelectorAll(".group").forEach(g=>{const vis=[...g.querySelectorAll(".task")].filter(t=>!t.hidden);g.hidden=!vis.length;
+    g.querySelectorAll(".task").forEach(t=>t.classList.remove("wide"));if(vis.length%2)vis[vis.length-1].classList.add("wide")});
+  $(".notice").hidden=terms.length>0;$("#recent").hidden=terms.length>0||!store.get().length;
+  $("#empty").hidden=shown>0;$("#clear").hidden=!q;
+  $("#status").textContent=terms.length?(shown?`${shown} task${shown===1?"":"s"} found. Press Enter to open the first one.`:"No tasks found."):"";
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c.dataset.q===(q||"").trim().toLowerCase())));
+}
+function highlight(text,terms){
+  const words=terms.flat().filter(w=>w.length>1).sort((a,b)=>b.length-a.length).map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"));
+  if(!words.length)return esc(text);
+  return esc(text).replace(new RegExp("\\b("+words.join("|")+")","gi"),"<mark>$1</mark>");
+}
+
+// Recently opened (kept only in this browser)
+function remember(t){const list=store.get().filter(x=>x.u!==t.u);list.unshift({t:t.t,u:t.u,i:t.i});store.set(list.slice(0,3));drawRecent()}
+function drawRecent(){const list=store.get();$("#recent-list").innerHTML=list.map(r=>`<a href="${esc(r.u)}" target="_blank" rel="noopener"><svg class="ic" width="18" height="18" aria-hidden="true"><use href="#i-${esc(r.i)}"/></svg>${esc(r.t)}</a>`).join("");$("#recent").hidden=!list.length||!!$("#q").value}
+$("#recent-list").addEventListener("click",e=>{const a=e.target.closest("a");if(a){const r=store.get().find(x=>x.u===a.getAttribute("href"));if(r)remember(r)}});
+
+// Controls
+$("#chips").innerHTML=chips.map(([l,q])=>`<button class="chip" type="button" data-q="${q}" aria-pressed="false">${l}</button>`).join("");
+$("#chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;const on=b.getAttribute("aria-pressed")==="true";$("#q").value=on?"":b.dataset.q;render($("#q").value)});
+$("#q").addEventListener("input",e=>render(e.target.value));
+$("#q").addEventListener("keydown",e=>{
+  if(e.key==="Enter"){const first=all.find(r=>!r.el.hidden);if(first&&$("#q").value.trim()){e.preventDefault();first.el.querySelector(".open").click()}}
+  if(e.key==="Escape"){$("#q").value="";render("")}
+});
+$("#clear").addEventListener("click",()=>{$("#q").value="";render("");$("#q").focus()});
+document.addEventListener("keydown",e=>{if(e.key==="/"&&document.activeElement!==$("#q")&&!/input|textarea/i.test(document.activeElement.tagName)){e.preventDefault();$("#q").focus()}});
+
+// Floating search button once the search bar scrolls away
+const fab=$("#fab");fab.hidden=false;fab.classList.add("off");
+new IntersectionObserver(([en])=>fab.classList.toggle("off",en.isIntersecting)).observe($(".search"));
+fab.addEventListener("click",()=>{window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});setTimeout(()=>$("#q").focus({preventScroll:true}),350)});
+
+// Copy link
+$("#share").addEventListener("click",async()=>{const label=$("#share span");const url=location.href.split("#")[0];
+  try{await navigator.clipboard.writeText(url);label.textContent="Link copied"}catch(e){label.textContent=url}
+  setTimeout(()=>label.textContent="Copy link to share",2500)});
+
+drawRecent();render("");
+</script>
+
+</body>
+</html>
