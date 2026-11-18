@@ -350,7 +350,7 @@ drawRecent();render("");
 
 <script>
 /* visit counter: counts each browser once, no personal data */
-(function(){var N="conuhub-q7x4k2",B="https://abacus.jasoncameron.dev/";function show(){fetch(B+"get/"+N+"/visitors").then(function(r){return r.json()}).then(function(d){if(d&&typeof d.value==="number"){document.getElementById("vcn").textContent=d.value.toLocaleString()+(d.value===1?" visit":" visits");document.getElementById("vc").classList.add("on")}}).catch(function(){})}function hit(k){return fetch(B+"hit/"+N+"/"+k,{keepalive:true}).catch(function(){})}var first=false;try{var s=window.localStorage;if(!s.getItem("hub_counted")){s.setItem("hub_counted","1");first=true}}catch(e){}if(first){hit("visitors").then(show);if(/[?&]ref=poster/.test(location.search))hit("poster")}else{show()}})();
+(function(){var N="conuhub-r2m9d8",B="https://abacus.jasoncameron.dev/";function show(){fetch(B+"get/"+N+"/visitors").then(function(r){return r.json()}).then(function(d){if(d&&typeof d.value==="number"){document.getElementById("vcn").textContent=d.value.toLocaleString()+(d.value===1?" visit":" visits");document.getElementById("vc").classList.add("on")}}).catch(function(){})}function hit(k){return fetch(B+"hit/"+N+"/"+k,{keepalive:true}).catch(function(){})}var first=false;try{var s=window.localStorage;if(!s.getItem("hub_counted2")){s.setItem("hub_counted2","1");first=true}}catch(e){}if(first){hit("visitors").then(show);if(/[?&]ref=poster/.test(location.search))hit("poster")}else{show()}})();
 </script>
 </body>
 </html>
