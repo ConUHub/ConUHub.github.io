@@ -53,6 +53,7 @@ body{background:var(--ground);color:var(--ink);font:400 16px/1.5 var(--font);car
 .brand{font:700 clamp(17px,4.6vw,20px) var(--font);color:var(--link);letter-spacing:-.005em}
 .tag{display:inline-flex;align-items:center;gap:5px;font:600 12.5px var(--font);white-space:nowrap;color:var(--ink-2);background:var(--ground);border-radius:999px;padding:5px 11px}
 .band{background-color:var(--burgundy);background-image:linear-gradient(100deg,rgba(122,24,44,.95) 0%,rgba(145,35,56,.86) 55%,rgba(145,35,56,.62) 100%),url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Concordia_University_02.JPG/1280px-Concordia_University_02.JPG");background-size:cover;background-position:center 30%;color:var(--on-burgundy)}
+.band .inner{position:relative}.vc{position:absolute;top:6px;right:0;display:none;align-items:center;gap:6px;font:600 12.5px var(--font);color:#fff;background:rgba(0,0,0,.3);border-radius:999px;padding:4px 11px}.vc.on{display:inline-flex}
 .band .inner{padding-block:30px 24px;display:flex;flex-direction:column;gap:14px}
 h1{margin:0;font:700 clamp(32px,7.5vw,52px)/1.05 var(--font);font-stretch:88%;letter-spacing:-.01em;text-wrap:balance}
 .lede{margin:0;color:var(--on-burgundy-2);max-width:56ch;font-size:16px}
@@ -175,6 +176,7 @@ mark{background:color-mix(in srgb,var(--yellow) 45%,transparent);color:inherit;b
 
 <header class="band gut">
   <div class="inner">
+    <span class="vc" id="vc" aria-live="polite"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span id="vcn"></span></span>
     <h1>What do you need to do?</h1>
     <p class="lede">Pick a task to go straight to the official Concordia page, with the steps in two lines.</p>
     <div class="search" role="search">
@@ -348,7 +350,7 @@ drawRecent();render("");
 
 <script>
 /* visit counter: counts each browser once, no personal data */
-(function(){try{var N="conuhub-q7x4k2",s=window.localStorage;function hit(k){fetch("https://abacus.jasoncameron.dev/hit/"+N+"/"+k,{keepalive:true}).catch(function(){})}if(!s.getItem("hub_counted")){s.setItem("hub_counted","1");hit("visitors");if(/[?&]ref=poster/.test(location.search))hit("poster")}}catch(e){}})();
+(function(){var N="conuhub-q7x4k2",B="https://abacus.jasoncameron.dev/";function show(){fetch(B+"get/"+N+"/visitors").then(function(r){return r.json()}).then(function(d){if(d&&typeof d.value==="number"){document.getElementById("vcn").textContent=d.value.toLocaleString()+(d.value===1?" visit":" visits");document.getElementById("vc").classList.add("on")}}).catch(function(){})}function hit(k){return fetch(B+"hit/"+N+"/"+k,{keepalive:true}).catch(function(){})}var first=false;try{var s=window.localStorage;if(!s.getItem("hub_counted")){s.setItem("hub_counted","1");first=true}}catch(e){}if(first){hit("visitors").then(show);if(/[?&]ref=poster/.test(location.search))hit("poster")}else{show()}})();
 </script>
 </body>
 </html>
